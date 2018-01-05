@@ -2,7 +2,7 @@ properties([parameters([string(name: 'Bucket_Name', defaultValue: 'krishnapardhu
 pipeline {
     agent {
         docker {
-            image 'krishnapardhu/image'
+            image 'devopscafe/maven-awscli'
             args '-v /root/.m2:/root/.m2'
         }
     }

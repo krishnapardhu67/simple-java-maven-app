@@ -13,9 +13,6 @@ pipeline {
             }
             post {
                 success  {
-                    slackSend (message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                }
-                failure  {
                     emailext  (
                 to: "krishnapardhu67@gmail.com",
                 subject: "Job Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
@@ -26,8 +23,19 @@ pipeline {
                   """
             )
                 }
+                failure  {
+                    emailext  (
+                to: "letstrydvops@gmail.com",
+                subject: "Job Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """=== Job Details as Below === 
+                  Job Name = '${env.JOB_NAME}'
+                  Job Build Number = '${env.BUILD_NUMBER}'
+                  Build Info @ '${env.BUILD_URL}' 
+                  """
+           )
             }
         }
+      }
         stage('Test') {
             steps {
                 sh 'mvn test'

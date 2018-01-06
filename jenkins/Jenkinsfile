@@ -1,4 +1,4 @@
-properties([parameters([string(name: 'Bucket_Name', defaultValue: 'jenkinsjava', 'javajenkins',)])])
+properties([parameters([string(name: 'Bucket_Name', defaultValue: 'jenkinsjava',)])])
 pipeline {
     agent {
         docker {

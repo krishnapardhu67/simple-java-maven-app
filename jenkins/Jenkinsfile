@@ -1,5 +1,4 @@
 properties([parameters([string(name: 'Bucket_Name', defaultValue: 'jenkinsjava',)])])
-properties([parameters([string(name: 'Bucket_Name1', defaultValue: 'javajenkins',)])])
 pipeline {
     agent {
         docker {
@@ -56,11 +55,6 @@ pipeline {
             steps {
                 sh "aws s3 cp /var/lib/jenkins/workspace/Jenkins/target/my-app-1.0-SNAPSHOT.jar s3://${params.Bucket_Name}/"
             }
-        }
-         stage('Store-in-S31') {
-            steps {
-                sh "aws s3 cp /var/lib/jenkins/workspace/Jenkins/target/my-app-1.0-SNAPSHOT.jar s3://${params.Bucket_Name1}/" 
-              }
          }
     }
 }
